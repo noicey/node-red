@@ -1,0 +1,91 @@
+[
+    {
+        "id": "9682dc77.6f717",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ae2a7edf.d6e1f",
+        "type": "inject",
+        "z": "9682dc77.6f717",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "5dc478cb.7bc7b8"
+            ]
+        ]
+    },
+    {
+        "id": "5dc478cb.7bc7b8",
+        "type": "function",
+        "z": "9682dc77.6f717",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey:\"q90260qNfDIi7FU8\"\n};\nmsg.payload=\"Temperature,,50\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 200,
+        "wires": [
+            [
+                "36940d8b.be50e2"
+            ]
+        ]
+    },
+    {
+        "id": "36940d8b.be50e2",
+        "type": "http request",
+        "z": "9682dc77.6f717",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://api.mediatek.com/mcs/v2/devices/DOKroQdL/datapoints.csv",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 410,
+        "y": 360,
+        "wires": [
+            [
+                "451d0c5d.557c64",
+                "a257e7a4.1b6758"
+            ]
+        ]
+    },
+    {
+        "id": "451d0c5d.557c64",
+        "type": "http response",
+        "z": "9682dc77.6f717",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 640,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a257e7a4.1b6758",
+        "type": "debug",
+        "z": "9682dc77.6f717",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 660,
+        "y": 540,
+        "wires": []
+    }
+]
